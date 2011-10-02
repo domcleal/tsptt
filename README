@@ -1,0 +1,35 @@
+TSPTT
+=====
+Simple hardware + software project to take an external switch state, via an
+Arduino and use it to hold down a PTT key in a VoIP application such as
+TeamSpeak.
+
+
+Arduino
+=======
+The Arduino used was a Nano as only a single input is needed.  The switch was
+connected to link either the ground or +5v rail to digital I/O port 2.
+
+The tsptt.pde source was loaded on, so it prints 0 or 1 (bytes, not ASCII) to
+the serial connection on a switch state change.
+
+
+PC software
+===========
+The PC software is a small Java app that listens to the serial connection via
+the rxtx library and holds/releases the key as required.
+
+It uses port COM3 on Windows, or /dev/ttyUSB0 otherwise by default and has F5
+configured as its PTT key.
+
+Usage: TSPTT [COM port] [Key code (int)]
+
+
+rxtx
+====
+Windows binaries for rxtx are available from here:
+http://rxtx.qbang.org/wiki/index.php/Download
+
+Linux distros should carry binaries (rxtx on Fedora, librxtx-java on Debian).
+
+Tested with rxtx-2.2-0.5.20100211 on Fedora and Cloudhopper x86 binaries.
