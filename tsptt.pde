@@ -12,10 +12,12 @@ void setup() {
   Serial.begin(9600);
   pinMode(2, INPUT);
   state = digitalRead(2);
+  pinMode(13, OUTPUT);
 }
 
 void loop() {
   int newstate = digitalRead(2);
+  digitalWrite(13, newstate);
   if (newstate != state) {
     Serial.print(byte(newstate));
     state = newstate;
